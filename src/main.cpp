@@ -3,8 +3,8 @@
 #include <llmfs/tensor.h>
 
 int main() {
-    std::cout << "hello, world" << std::endl;
-    Tensor t{2, 3};
-    std::cout << t;
+    Tensor t{2, 7};
+    std::cout << t << std::endl;
+
     return 0;
 }

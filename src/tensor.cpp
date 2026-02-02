@@ -37,10 +37,11 @@ void print_tensor(std::ostream &os, const Tensor &t, std::vector<int> &dim_pos) 
     int ndim = t.ndim();
     int previous_dims = dim_pos.size() - 1;
 
-    std::cout << std::string(previous_dims, ' ') << '[';
 
     if (previous_dims == ndim - 1) {
         // This is the last dim;
+        std::cout << std::string(previous_dims, ' ') << '[';
+
         auto shape = t.shape();
 
         int n_print = shape.back();
@@ -54,17 +55,26 @@ void print_tensor(std::ostream &os, const Tensor &t, std::vector<int> &dim_pos) 
                 os << ", ";
             }
         }
+
+        std::cout << ']';
     } else {
         // Not the last dim;
-        int shape_at_dim = t.shape()[previous_dims + 1];
+        std::cout << std::string(previous_dims, ' ') << '[' << std::endl;
+
+        int shape_at_dim = t.shape()[previous_dims];
         for (int i = 0; i < shape_at_dim; i++) {
             dim_pos.push_back(i);
             print_tensor(os, t, dim_pos);
             dim_pos.pop_back();
         }
+
+        std::cout << std::string(previous_dims, ' ') << ']';
     }
 
-    std::cout << std::string(previous_dims, ' ') << ']' << std::endl;
+
+    if (previous_dims != 0) {
+        std::cout << std::endl;
+    }
 }
 
 std::ostream& operator<<(std::ostream& os, const Tensor& t) {
