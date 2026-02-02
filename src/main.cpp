@@ -5,6 +5,6 @@
 
 int main() {
     std::cout << "hello, world" << std::endl;
-    Tensor t({2, 3});
+    Tensor t{2, 3};
     return 0;
 }
