@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.24)
-project(llmfs LANGUAGES CXX CUDA)
+project(matrix LANGUAGES CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,17 +12,17 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(CUDAToolkit REQUIRED)
 
-add_library(llmfs STATIC
-    src/tensor.cpp
-    src/tensor_cuda.cu
+add_library(matrix STATIC
+    src/matrix.cpp
+    src/matrix_cuda.cu
 )
 
-target_include_directories(llmfs PUBLIC
+target_include_directories(matrix PUBLIC
     include
 )
 
-target_link_libraries(llmfs PRIVATE CUDA::cudart)
+target_link_libraries(matrix PRIVATE CUDA::cudart)
 
 add_executable(main src/main.cpp)
 
-target_link_libraries(main PRIVATE llmfs)
+target_link_libraries(main PRIVATE matrix)
