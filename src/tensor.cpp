@@ -8,7 +8,7 @@ int Tensor::ndim() const {
     return shape_.size();
 }
 
-const std::vector<float>& Tensor::data() const {
+float* Tensor::data() const {
     return data_;
 }
 
@@ -83,4 +83,8 @@ std::ostream& operator<<(std::ostream& os, const Tensor& t) {
     std::vector<int> dim_pos{0};
     print_tensor(os, t, dim_pos);
     return os;
+}
+
+Tensor::~Tensor() {
+    free(this->data_);
 }
