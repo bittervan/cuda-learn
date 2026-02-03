@@ -13,8 +13,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(CUDAToolkit REQUIRED)
 
 add_library(matrix STATIC
-    src/matrix.cpp
-    src/matrix_cuda.cu
+    src/matrix.cu
 )
 
 target_include_directories(matrix PUBLIC
